@@ -1,2 +1,2 @@
 # Game
-# a game created for fun
+A game created for fun
