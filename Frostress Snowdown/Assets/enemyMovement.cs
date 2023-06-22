@@ -41,6 +41,6 @@ public class enemyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+        rb.velocity = direction * moveSpeed*Time.deltaTime;
     }
 }
