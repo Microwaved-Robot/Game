@@ -17,30 +17,24 @@ public class enemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = LevelManager.main.path[pathIndex];
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(target.position, transform.position) <= 200)
+        target = LevelManager.main.path[pathIndex];
+
+        // Makes the speed in seconds
+        moveSpeed = moveSpeed * Time.deltaTime;
+
+        // Move enemy towards target
+        if(transform.position != target.position)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed);
+        } else
         {
             pathIndex++;
-
-            if(pathIndex == LevelManager.main.path.Length)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                target = LevelManager.main.path[pathIndex];
-            }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        Vector2 direction = (target.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed*Time.deltaTime;
     }
 }
